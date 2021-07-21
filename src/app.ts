@@ -1,5 +1,8 @@
 import express, { Application } from 'express';
-import routes from './routes';
+
+import router from './router';
+import './database';
+
 
 class AppController {
   public express: Application;
@@ -16,7 +19,7 @@ class AppController {
   }
 
   routes() {
-    this.express.use(routes);
+    this.express.use(router);
   }
 }
 
