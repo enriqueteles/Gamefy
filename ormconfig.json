@@ -2,6 +2,8 @@
     "type": "sqlite",
     "host": "localhost",
     "database": "src/database/database.sqlite",
+    "dropSchema": true,
+    "migrationsRun": true,
     "migrations": ["src/database/migrations/*.ts"],
     "entities": ["src/entities/*.ts"],
     "cli": {

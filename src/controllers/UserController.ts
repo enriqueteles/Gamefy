@@ -24,4 +24,5 @@ export class UserController {
 
     return response.json(user);
   }
+
 }

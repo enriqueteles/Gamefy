@@ -1,8 +1,12 @@
 import express, { Application } from 'express';
 
 import router from './router';
-import './database';
+import connection from './database';
 
+import * as dotenv from 'dotenv';
+dotenv.config({
+  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
+})
 
 class AppController {
   public express: Application;
@@ -10,6 +14,9 @@ class AppController {
   constructor() {
     this.express = express();
 
+    // createTypeormConn();
+    connection.create();
+    
     this.middlewares();
     this.routes();
   }
