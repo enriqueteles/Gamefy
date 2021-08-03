@@ -1,14 +1,16 @@
-import SessionController from '@controllers/SessionController';
-import { UserController } from '@controllers/UserController';
 import { Router } from 'express';
+
+import { UserController } from '@controllers/Users/UserController';
 
 const router = Router();
 
-const sessionController = new SessionController();
 const userController = new UserController();
 
-router.post("/sessions", sessionController.store);
+router.post("/login", userController.login); 
 
+router.get("/users", userController.index); // debug only
 router.post("/users", userController.createUser);
+
+
 
 export default router;

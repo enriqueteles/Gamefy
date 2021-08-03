@@ -3,28 +3,37 @@ import { getCustomRepository } from 'typeorm';
 import { UserRepository } from './../../src/repositories/UserRepository';
 import request from 'supertest';
 
-import app from '../../src/app';
+import { app } from '../../src/app';
 import connection from '../../src/database';
 
 const userService = new UserService;
 
-beforeAll(async ()=>{
-  await connection.create();
-});
+// beforeAll(async ()=>{
+//   await connection.create();
+// });
 
-afterAll(async ()=>{
-  await connection.close();
-});
+// afterAll(async ()=>{
+//   await connection.close();
+// });
 
-beforeEach(async () => {
-  await connection.clear();
-});
+// beforeEach(async () => {
+//   await connection.clear();
+// });
 
 
 describe('Authentication', () => {
+  beforeAll(async () => {
+    await connection.create();
+    // await connection.createPermissions();
+    // await connection.createTestUsers();
+  });
+
+  afterAll(async () => {
+    // await connection.clear();
+    await connection.close();
+  });
+  
   it('should authenticate with valid credentials', async () => {
-    // await createTypeormConn();
-    
     const user = await userService.createUser({
       name: "Tulipa",
       email: "tulipa@email.com",
@@ -34,7 +43,7 @@ describe('Authentication', () => {
     });
 
     const response = await request(app)
-      .post('/sessions')
+      .post('/login')
       .send({
         email: user.email,
         password: "123456"

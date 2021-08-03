@@ -14,7 +14,7 @@ const connection = {
     await getConnection().close(); 
   },
 
-  async clear(){
+  async clear() {
     const connection = getConnection();
     const entities = connection.entityMetadatas;
 

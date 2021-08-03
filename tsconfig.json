@@ -14,8 +14,10 @@
       "@database/*": ["./src/database/*"],
       "@entities/*": ["./src/entities/*"],
       "@repositories/*": ["./src/repositories/*"],
+      "@services/*": ["./src/services/*"],
       "@types/*": ["./src/@types/*"],
-      "@config/*": ["./src/config/*"]
+      "@config/*": ["./src/config/*"],
+      "@src/*": ["./src/*"]
     },                                 
     "typeRoots": [
       "./node_modules/@types",
