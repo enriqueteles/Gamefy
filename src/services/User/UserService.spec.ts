@@ -1,5 +1,6 @@
 import request from 'supertest';
 import { getCustomRepository } from 'typeorm';
+import { factory } from 'typeorm-seeding';
 
 import connection from '@database/.';
 import { User } from '@entities/User';
@@ -27,6 +28,9 @@ describe('Create User Service', () => {
       username: "tualipa",
       password: "123456"
     };
+
+    // await factory(User)().createMany(10);
+    // const user2 = await factory(User)().create();
 
     const user = await userService.createUser(userData);
 
@@ -102,5 +106,6 @@ describe('Create User Service', () => {
       .toThrowError("Password incorrect");
   });
 
+  // should encrypt user password
 
 });

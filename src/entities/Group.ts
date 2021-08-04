@@ -1,30 +1,18 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm';
 import { v4 as uuid } from 'uuid';
 
-@Entity("users")
-export class User {
-
+@Entity("groups")
+export class Group {
+  
   @PrimaryColumn()
   readonly id: string;
 
   @Column()
   name: string;
-  
-  @Column()
-  email: string;
-  
-  @Column()
-  password: string;
-  
-  @Column()
-  is_super: boolean;
-  
-  @Column()
-  image_medium_url: string;
-  
-  @Column()
-  username: string;
 
+  @Column()
+  is_private: boolean;
+  
   @CreateDateColumn()
   created_at: Date;
   
