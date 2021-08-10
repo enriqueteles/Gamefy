@@ -1,5 +1,9 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm';
+import {
+    Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, UpdateDateColumn
+} from 'typeorm';
 import { v4 as uuid } from 'uuid';
+
+import { UserGroup } from './UserGroup';
 
 @Entity("groups")
 export class Group {
@@ -18,6 +22,9 @@ export class Group {
   
   @UpdateDateColumn()
   updated_at: Date;
+
+  @OneToMany(() => UserGroup, userGroup => userGroup.group)
+  users!: UserGroup[];
 
   constructor() {
     if(!this.id) {
