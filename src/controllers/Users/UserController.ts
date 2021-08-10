@@ -35,12 +35,12 @@ export class UserController {
 
     const userService = new UserService();
 
-    const token = await userService.authenticateUser({
+    const user = await userService.authenticateUser({
       email,
       password
     });
 
-    return response.json(token);
+    return response.json(user);
   }
 
 }

@@ -1,12 +1,13 @@
-import { createConnection } from 'typeorm';
+import 'express-async-errors';
+
+import cors from 'cors';
+// const cors = require('cors');
+import * as dotenv from 'dotenv';
 import express, { Application, NextFunction, Request, Response } from 'express';
-import "express-async-errors";
+import { createConnection } from 'typeorm';
 
 import router from './router';
-// import connection from './database';
-// import './database';
 
-import * as dotenv from 'dotenv';
 dotenv.config({
   path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
 })
@@ -19,10 +20,21 @@ const app = express();
 
 app.use(express.json());
 
-// database
-// database();
-// createConnection();
-// middleware
+// cors
+const options: cors.CorsOptions = {
+  allowedHeaders: [
+    'Origin',
+    'X-Requested-With',
+    'Content-Type',
+    'Accept',
+    'X-Access-Token',
+  ],
+  methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
+  origin: '*',
+  preflightContinue: false,
+}
+app.use(cors(options));
+
 
 // routes
 app.use(router);
@@ -43,58 +55,3 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
 });
 
 export { app };
-
-// class AppController {
-//   public express: Application;
-
-//   constructor() {
-//     // createConnection()
-//       // .then(async () => {
-
-//       //   this.express = express();
-    
-//       //   this.middlewares();
-//       //   this.routes();
-//       //   this.errors();
-//       // }).catch(error => {
-//       //   console.log("TypeORM connection error: ", error)
-//       // })
-//       this.database();
-
-//       this.express = express();
-  
-//       this.middlewares();
-//       this.routes();
-//       this.errors();
-//   }
-
-//   async database() {
-//     await createConnection();
-//   }
-
-//   middlewares() {
-//     this.express.use(express.json());
-//   }
-
-//   routes() {
-//     this.express.use(router);
-//   }
-
-//   errors() {
-//     this.express.use((err: Error, request: Request, response: Response, next: NextFunction) => {
-//       if(err instanceof Error) {
-//         return response.status(400).json({
-//           error: err.message
-//         })
-//       }
-
-//       return response.status(500).json({
-//         status: "error",
-//         message: "Internal Server Error"
-//       })
-
-//     })
-//   }
-// }
-
-// export default new AppController().express;

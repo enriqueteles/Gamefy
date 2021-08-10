@@ -7,7 +7,8 @@ define(Group, (faker: typeof Faker) =>  {
   const group = new Group()
 
   group.name = faker.name.title();
-  group.is_private = faker.datatype.boolean();
+  group.is_private = Boolean(Math.round(Math.random()));
+
 
   return group;
 })

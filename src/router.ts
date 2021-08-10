@@ -18,6 +18,10 @@ router.post("/users", userController.createUser);
 router.get("/users", userController.index); // debug only
 
 router.get("/groups", groupController.listPublicGroups); // list groups
-router.post("/groups", auth.authenticate, groupController.createGroup); // create group
+router.get("/userGroups", auth.authenticate, groupController.listUserGroups); // 
+router.post("/groups", auth.authenticate, groupController.createGroup); 
+router.delete("/groups/:group_id", auth.authenticate, groupController.deleteGroup); 
+router.post("/joinGroup/:group_id", auth.authenticate, groupController.joinGroup); 
+router.post("/leaveGroup/:group_id", auth.authenticate, groupController.leaveGroup); 
 
 export default router;

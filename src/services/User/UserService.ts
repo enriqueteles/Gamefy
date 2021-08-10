@@ -90,7 +90,16 @@ export class UserService {
       expiresIn: "1w"
     });
 
-    return token;
+    return {
+      token,
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      username: user.username,
+      is_super: user.is_super,
+      image_medium_url: user.image_medium_url,
+      groups: user.groups
+    };
   }
 
 }
