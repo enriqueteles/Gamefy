@@ -1,4 +1,4 @@
-import { createConnection, getConnection, getConnectionOptions } from "typeorm";
+import { createConnection, getConnection, getConnectionOptions } from 'typeorm';
 
 // export default async function createTypeormConn() {
 //   const connectionOptions = await getConnectionOptions(process.env.NODE_ENV);
@@ -20,7 +20,8 @@ const connection = {
 
     entities.forEach(async (entity) => {
       const repository = connection.getRepository(entity.name);
-      await repository.query(`DELETE FROM ${entity.tableName}`);
+      // await repository.query(`DELETE FROM ${entity.tableName}`);
+      await repository.query(`DELETE FROM USERS;`);
     });
   },
 };

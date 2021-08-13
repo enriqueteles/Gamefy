@@ -1,7 +1,11 @@
 
 export default {
-    type: "sqlite",
-    database: process.env.DB_PATH,
+    type: "postgres",
+    host: "localhost",
+    port: 5432,
+    username: "typeorm",
+    password: "password",
+    database: process.env.DB_NAME,
     migrations: ["src/database/migrations/*.ts"],
     entities: ["src/entities/*.ts"],
     seeds: ['src/seeds/**/*{.ts,.js}'],

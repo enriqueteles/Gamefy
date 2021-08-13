@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateUsers1626815507783 implements MigrationInterface {
 
@@ -26,7 +26,7 @@ export class CreateUsers1626815507783 implements MigrationInterface {
           },
           {
             name: "is_super",
-            type: "booelan",
+            type: "boolean",
           },
           {
             name: "image_medium_url",
