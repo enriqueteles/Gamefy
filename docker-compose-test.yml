@@ -29,3 +29,4 @@ services:
       - 3333:3333
     volumes:
       - .:/usr/app ## monitoro a pasta atual . e envio as alterações para /usr/app
+    tty: true
