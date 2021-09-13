@@ -102,4 +102,33 @@ export class UserService {
     };
   }
 
+  async updateProfileUrl({
+    user_id,
+    file
+  }) {
+    const userRepository = getCustomRepository(UserRepository);
+    
+    // validate user
+    const user = await userRepository.findOne({
+      id: user_id
+    });
+
+    if(!user)
+      throw new Error("User not found");
+
+    console.log(file);
+    const updated = await userRepository.update({
+      id: user_id
+    }, {
+      image_medium_url: file.location
+    })
+
+    if(!updated)
+      throw new Error("Error updating user");
+    
+    user.image_medium_url = file.location;
+
+    return user;
+  }
+
 }

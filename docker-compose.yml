@@ -11,7 +11,6 @@ services:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=root
-      - PGDATA=/data/postgres
     healthcheck:
       test: ["CMD-SHELL", "pg_isready"]
       interval: 10s
@@ -19,6 +18,7 @@ services:
       retries: 5
     volumes:
       - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+      - pgdata:/var/lib/postgresql/data
   app: 
     build: . ## use Dockerfile
     depends_on: 
@@ -29,3 +29,5 @@ services:
       - 3333:3333
     volumes:
       - .:/usr/app ## monitoro a pasta atual . e envio as alterações para /usr/app
+volumes:
+    pgdata:

@@ -1,9 +1,10 @@
 import { Router } from 'express';
 
+import * as multerConfig from '@config/multer';
 import { GroupController } from '@controllers/Groups/GroupController';
 import { UserController } from '@controllers/Users/UserController';
-
-import { Auth } from './middleware/Auth';
+import { Auth } from '@middlewares/Auth';
+import { upload } from '@middlewares/upload';
 
 const router = Router();
 
@@ -16,6 +17,7 @@ router.post("/login", userController.login);
 router.post("/users", userController.createUser);
 
 router.get("/users", userController.index); // debug only
+router.post("/user/profile-img", auth.authenticate, upload.single("file"), userController.setProfileImage);
 
 router.get("/groups", groupController.listPublicGroups); // list groups
 router.get("/userGroups", auth.authenticate, groupController.listUserGroups); // 
