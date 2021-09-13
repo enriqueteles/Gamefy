@@ -1,4 +1,6 @@
 *.sqlite
+tmp/
+pgdata
 
 # Logs
 logs
