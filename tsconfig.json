@@ -17,6 +17,7 @@
       "@services/*": ["./src/services/*"],
       "@types/*": ["./src/@types/*"],
       "@config/*": ["./src/config/*"],
+      "@middlewares/*": ["./src/middlewares/*"],
       "@src/*": ["./src/*"]
     },                                 
     "typeRoots": [

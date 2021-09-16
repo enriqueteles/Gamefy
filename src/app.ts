@@ -33,7 +33,8 @@ const options: cors.CorsOptions = {
   origin: '*',
   preflightContinue: false,
 }
-app.use(cors(options));
+// app.use(cors(options));
+app.use(cors());
 
 
 // routes
